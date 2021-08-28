@@ -1,0 +1,15 @@
+import cv2
+img=cv2.imread("face_track.jpeg")
+gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+face_cascade=cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+haar=face_cascade.detectMultiScale(gray,1.4,6)
+for (x,y,w,h) in haar:
+    cv2.rectangle(img,(x,y),(x+w,y+w),(255,0,0),2)
+    cv2.putText(img,'face',(x,y),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255),2,cv2.LINE_AA)
+    print(x)
+    print(y)
+    print(w)
+    print(h)
+    cv2.imshow('img', img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
